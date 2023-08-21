@@ -1,0 +1,39 @@
+name: very_good_accessibility
+description: Implement A11y in a very good app
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  bloc: ^8.1.1
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.2
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^2.0.7
+  intl: ^0.18.0
+  meta: ^1.9.1
+
+dev_dependencies:
+  bloc_test: ^9.1.1
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^3.1.0
+
+flutter_gen:
+  output: lib/generated/
+  line_length: 80
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/
+    - assets/images/
+
+
