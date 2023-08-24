@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class Dog extends Equatable {
-  Dog(
-      {required this.description,
-      required this.image,
-      required this.title,
-      required this.imageLabel});
+  const Dog({
+    required this.description,
+    required this.image,
+    required this.title,
+    required this.imageLabel,
+  });
 
   final String description;
   final String image;
@@ -13,7 +14,7 @@ class Dog extends Equatable {
   final String imageLabel;
 
   /// An empty dog.
-  static Dog empty = Dog(
+  static const Dog empty = Dog(
     description: '',
     image: '',
     title: '',

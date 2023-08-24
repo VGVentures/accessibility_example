@@ -26,22 +26,26 @@ class ItemCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Semantics(
-              sortKey: const OrdinalSortKey(1),
-              child: ItemCardImage(image: dog.image, label: dog.imageLabel),
+              sortKey: const OrdinalSortKey(2),
+              child: ItemCardImage(
+                image: dog.image,
+                label: dog.imageLabel,
+              ),
             ),
             const ExcludeSemantics(child: SizedBox(height: 8)),
             Semantics(
-              sortKey: const OrdinalSortKey(2),
+              header: true,
+              sortKey: const OrdinalSortKey(0),
               child: ItemCardTitle(title: dog.title),
             ),
             const ExcludeSemantics(child: SizedBox(height: 16)),
             Semantics(
-              sortKey: const OrdinalSortKey(3),
+              sortKey: const OrdinalSortKey(1),
               child: ItemCardDescription(description: dog.description),
             ),
             const ExcludeSemantics(child: SizedBox(height: 16)),
             Semantics(
-              sortKey: const OrdinalSortKey(4),
+              sortKey: const OrdinalSortKey(3),
               child: ItemFavoriteButton(dog: dog),
             )
           ],
