@@ -47,7 +47,7 @@ class ItemCard extends StatelessWidget {
             Semantics(
               sortKey: const OrdinalSortKey(3),
               child: ItemFavoriteButton(dog: dog),
-            )
+            ),
           ],
         ),
       ),
