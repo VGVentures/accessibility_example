@@ -12,21 +12,28 @@ class FavoritesView extends StatelessWidget {
 
     return favoriteDogs.isNotEmpty
         ? ListView.separated(
+            shrinkWrap: true,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             itemBuilder: (context, index) {
               final dog = favoriteDogs[index];
-              return ListTile(
-                leading: ItemCardImage(image: dog.image, label: dog.imageLabel),
-                title: Text(dog.title),
-                subtitle: Text(dog.description),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.delete,
-                    semanticLabel: 'Remove ${dog.title} from favorites',
-                  ),
-                  onPressed: () => context.read<HomeBloc>().add(
-                        UpdateFavoriteRequested(dog: dog),
+              return Semantics(
+                liveRegion: true,
+                child: MergeSemantics(
+                  child: ListTile(
+                    leading:
+                        ItemCardImage(image: dog.image, label: dog.imageLabel),
+                    title: Text(dog.title),
+                    subtitle: Text(dog.description),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        semanticLabel: 'Remove ${dog.title} from favorites',
                       ),
+                      onPressed: () => context.read<HomeBloc>().add(
+                            UpdateFavoriteRequested(dog: dog),
+                          ),
+                    ),
+                  ),
                 ),
               );
             },
@@ -34,26 +41,38 @@ class FavoritesView extends StatelessWidget {
                 const ExcludeSemantics(child: SizedBox(height: 16)),
             itemCount: favoriteDogs.length,
           )
-        : Center(
-            child: MergeSemantics(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'No favorites, please go to Home Page to add more '
-                    'dogs to favorites',
-                    textAlign: TextAlign.center,
-                  ),
-                  const ExcludeSemantics(child: SizedBox(height: 16)),
-                  ElevatedButton(
-                    onPressed: () => context
-                        .read<HomeBloc>()
-                        .add(ChangeSelectedIndexRequested(index: 0)),
-                    child: const Text('Go to Home Page'),
-                  ),
-                ],
+        : const NoFavoritesView();
+  }
+}
+
+class NoFavoritesView extends StatelessWidget {
+  const NoFavoritesView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: MergeSemantics(
+        child: Semantics(
+          liveRegion: true,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'No favorites, please go to Home Page to add more '
+                'dogs to favorites',
+                textAlign: TextAlign.center,
               ),
-            ),
-          );
+              const ExcludeSemantics(child: SizedBox(height: 16)),
+              ElevatedButton(
+                onPressed: () => context
+                    .read<HomeBloc>()
+                    .add(ChangeSelectedIndexRequested(index: 0)),
+                child: const Text('Go to Home Page'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

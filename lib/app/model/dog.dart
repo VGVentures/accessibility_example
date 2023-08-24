@@ -5,24 +5,19 @@ class Dog extends Equatable {
     required this.description,
     required this.image,
     required this.title,
-    required this.titleLabel,
-    required this.descriptionLabel,
     required this.imageLabel,
   });
 
   final String description;
   final String image;
   final String title;
-  final String titleLabel;
-  final String descriptionLabel;
   final String imageLabel;
 
-  static Dog empty = const Dog(
+  /// An empty dog.
+  static const Dog empty = Dog(
     description: '',
     image: '',
     title: '',
-    titleLabel: '',
-    descriptionLabel: '',
     imageLabel: '',
   );
 
@@ -31,8 +26,6 @@ class Dog extends Equatable {
         description,
         image,
         title,
-        titleLabel,
-        descriptionLabel,
         imageLabel,
       ];
 }

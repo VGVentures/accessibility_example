@@ -18,27 +18,46 @@ class HomePage extends StatelessWidget {
       const FavoritesPage(),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.homeAppBarTitle)),
-      body: pages.elementAt(selectedIndex),
-      bottomNavigationBar: Semantics(
-        child: BottomNavigationBar(
-          onTap: (value) => context.read<HomeBloc>().add(
-                ChangeSelectedIndexRequested(index: value),
-              ),
-          currentIndex: selectedIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              tooltip: 'Home page',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favorites',
-              tooltip: 'Favorites page',
-            ),
+    final mediaQuery = MediaQuery.of(context);
+
+    return MediaQuery(
+      data: mediaQuery.copyWith(
+        accessibleNavigation: true,
+      ),
+      child: Scaffold(
+        appBar: AppBar(
+          excludeHeaderSemantics: true,
+          title: Text(
+            l10n.homeAppBarTitle,
+            semanticsLabel: '${l10n.homeAppBarTitle} AppBar',
+          ),
+          actions: const [
+            // IconButton(
+            //   icon: Icon(Icons.accessibility),
+            //   onPressed: debugDumpSemanticsTree,
+            // ),
           ],
+        ),
+        body: pages.elementAt(selectedIndex),
+        bottomNavigationBar: Semantics(
+          child: BottomNavigationBar(
+            onTap: (value) => context.read<HomeBloc>().add(
+                  ChangeSelectedIndexRequested(index: value),
+                ),
+            currentIndex: selectedIndex,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+                tooltip: 'Home page',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: 'Favorites',
+                tooltip: 'Favorites page',
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -66,8 +85,12 @@ class DogsList extends StatelessWidget {
     final dogs = context.select((HomeBloc bloc) => bloc.state.dogs);
 
     return ListView.separated(
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(16),
       itemCount: dogs.length,
-      itemBuilder: (context, index) => ItemCard(dog: dogs[index]),
+      itemBuilder: (context, index) => ItemCard(
+        dog: dogs[index],
+      ),
       separatorBuilder: (context, index) =>
           const ExcludeSemantics(child: SizedBox(height: 16)),
     );
