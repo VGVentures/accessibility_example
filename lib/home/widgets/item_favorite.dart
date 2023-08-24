@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_accessibility/app/app.dart';
 import 'package:very_good_accessibility/home/home.dart';
 
-class ItemFavorite extends StatelessWidget {
-  const ItemFavorite({
+class ItemFavoriteButton extends StatelessWidget {
+  const ItemFavoriteButton({
     required this.dog,
     super.key,
   });

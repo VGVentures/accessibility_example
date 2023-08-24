@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 
 class ItemCardTitle extends StatelessWidget {
   const ItemCardTitle({
     required this.title,
-    required this.label,
     super.key,
   });
 
   final String title;
-  final String label;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Semantics(
-      sortKey: const OrdinalSortKey(1),
-      header: true,
+    final textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    return Padding(
+      padding: const EdgeInsets.all(8),
       child: Text(
         title,
-        style: theme.textTheme.titleLarge,
+        semanticsLabel: title,
+        textScaleFactor: textScaleFactor * 1.5,
       ),
     );
   }

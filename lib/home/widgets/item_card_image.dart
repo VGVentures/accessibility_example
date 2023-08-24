@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 
 class ItemCardImage extends StatelessWidget {
   const ItemCardImage({
@@ -13,11 +12,10 @@ class ItemCardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      image: true,
-      label: label,
-      sortKey: const OrdinalSortKey(0),
-      child: Image.asset(image),
+    return Image.asset(
+      image,
+      fit: BoxFit.fill,
+      semanticLabel: label,
     );
   }
 }
