@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:very_good_accessibility/app/app.dart';
 import 'package:very_good_accessibility/home/home.dart';
 
@@ -26,29 +25,16 @@ class ItemCard extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            Semantics(
-              sortKey: const OrdinalSortKey(2),
-              child: ItemCardImage(
-                image: dog.image,
-                label: dog.imageLabel,
-              ),
+            ItemCardImage(
+              image: dog.image,
+              label: dog.imageLabel,
             ),
             const ExcludeSemantics(child: SizedBox(height: 8)),
-            Semantics(
-              header: true,
-              sortKey: const OrdinalSortKey(0),
-              child: ItemCardTitle(title: dog.title),
-            ),
+            ItemCardTitle(title: dog.title),
             const ExcludeSemantics(child: SizedBox(height: 16)),
-            Semantics(
-              sortKey: const OrdinalSortKey(1),
-              child: ItemCardDescription(description: dog.description),
-            ),
+            ItemCardDescription(description: dog.description),
             const ExcludeSemantics(child: SizedBox(height: 16)),
-            Semantics(
-              sortKey: const OrdinalSortKey(3),
-              child: ItemFavoriteButton(dog: dog),
-            ),
+            ItemFavoriteButton(dog: dog),
           ],
         ),
       ),

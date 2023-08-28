@@ -15,21 +15,30 @@ class ItemFavoriteButton extends StatelessWidget {
     final favoriteDogs =
         context.select((HomeBloc bloc) => bloc.state.favoriteDogs);
     final isFavorite = favoriteDogs.contains(dog);
+
+    final onTapHint = isFavorite
+        ? 'Remove ${dog.title} from favorites'
+        : 'Add ${dog.title} to favorites';
+
+    final label = isFavorite ? 'Remove button' : 'Add button';
+    const iconLabel = 'Heart button icon';
+
     return Align(
       alignment: Alignment.centerRight,
       child: Semantics(
+        key: Key('item_favorite_button_${dog.title}'),
         button: true,
+        label: label,
         selected: isFavorite,
+        onTap: () => context.read<HomeBloc>().add(
+              UpdateFavoriteRequested(dog: dog),
+            ),
+        onTapHint: onTapHint,
         child: IconButton(
-          icon: isFavorite
-              ? const Icon(
-                  Icons.favorite,
-                  semanticLabel: 'Remove from favorites',
-                )
-              : const Icon(
-                  Icons.favorite_border,
-                  semanticLabel: 'Add to favorites',
-                ),
+          icon: Icon(
+            isFavorite ? Icons.favorite : Icons.favorite_border,
+            semanticLabel: iconLabel,
+          ),
           onPressed: () => context.read<HomeBloc>().add(
                 UpdateFavoriteRequested(dog: dog),
               ),

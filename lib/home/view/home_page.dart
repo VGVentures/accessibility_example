@@ -31,12 +31,6 @@ class HomePage extends StatelessWidget {
             l10n.homeAppBarTitle,
             semanticsLabel: '${l10n.homeAppBarTitle} AppBar',
           ),
-          // actions: const [
-          // IconButton(
-          //   icon: Icon(Icons.accessibility),
-          //   onPressed: debugDumpSemanticsTree,
-          // ),
-          // ],
         ),
         body: pages.elementAt(selectedIndex),
         bottomNavigationBar: Semantics(
@@ -84,15 +78,19 @@ class DogsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final dogs = context.select((HomeBloc bloc) => bloc.state.dogs);
 
-    return ListView.separated(
+    return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.all(16),
       itemCount: dogs.length,
-      itemBuilder: (context, index) => ItemCard(
-        dog: dogs[index],
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 16,
+        ),
+        child: ItemCard(
+          dog: dogs[index],
+        ),
       ),
-      separatorBuilder: (context, index) =>
-          const ExcludeSemantics(child: SizedBox(height: 16)),
     );
   }
 }
