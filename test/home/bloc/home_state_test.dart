@@ -32,8 +32,9 @@ void main() {
         description: 'description',
         image: 'image',
         imageLabel: 'imageLabel',
-      )
+      ),
     ];
+
     expect(
       HomeState().copyWith(dogs: dogs),
       HomeState(dogs: dogs),
@@ -47,8 +48,9 @@ void main() {
         description: 'description',
         image: 'image',
         imageLabel: 'imageLabel',
-      )
+      ),
     ];
+
     expect(
       HomeState().copyWith(favoriteDogs: favoriteDogs),
       HomeState(favoriteDogs: favoriteDogs),
