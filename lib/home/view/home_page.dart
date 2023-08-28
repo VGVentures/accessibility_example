@@ -31,12 +31,12 @@ class HomePage extends StatelessWidget {
             l10n.homeAppBarTitle,
             semanticsLabel: '${l10n.homeAppBarTitle} AppBar',
           ),
-          actions: const [
-            // IconButton(
-            //   icon: Icon(Icons.accessibility),
-            //   onPressed: debugDumpSemanticsTree,
-            // ),
-          ],
+          // actions: const [
+          // IconButton(
+          //   icon: Icon(Icons.accessibility),
+          //   onPressed: debugDumpSemanticsTree,
+          // ),
+          // ],
         ),
         body: pages.elementAt(selectedIndex),
         bottomNavigationBar: Semantics(
