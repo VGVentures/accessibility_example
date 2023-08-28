@@ -24,7 +24,7 @@ class FavoritesDogs extends StatelessWidget {
     final favoriteDogs =
         context.select((HomeBloc bloc) => bloc.state.favoriteDogs);
 
-    return ListView.separated(
+    return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       itemBuilder: (context, index) {
@@ -49,8 +49,6 @@ class FavoritesDogs extends StatelessWidget {
           ),
         );
       },
-      separatorBuilder: (_, __) =>
-          const ExcludeSemantics(child: SizedBox(height: 16)),
       itemCount: favoriteDogs.length,
     );
   }

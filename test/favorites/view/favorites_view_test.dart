@@ -31,13 +31,20 @@ void main() {
     group('renders', () {
       testWidgets('FavoritesDogs when favoritesDogs is not empty',
           (tester) async {
-        when(() => homeBloc.state).thenReturn(HomeState(favoriteDogs: [dog]));
+        final favoriteDogs = [dog];
+        when(() => homeBloc.state)
+            .thenReturn(HomeState(favoriteDogs: favoriteDogs));
         await tester.pumpApp(
           FavoritesView(),
           homeBloc: homeBloc,
         );
 
         expect(find.byType(FavoritesDogs), findsOneWidget);
+        final separatorFinder = find.descendant(
+          of: find.byType(ListView),
+          matching: find.byType(SizedBox),
+        );
+        expect(separatorFinder, findsNWidgets(2));
       });
 
       testWidgets('NoFavoritesView when favoritesDogs is empty',
