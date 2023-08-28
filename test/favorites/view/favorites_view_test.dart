@@ -150,7 +150,8 @@ void main() {
         // Checks that tappable nodes have a minimum size of 44 by 44 pixels
         // for iOS.
         await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
-        // Checks that touch targets with a tap or long press action are labeled.
+        // Checks that touch targets with a tap or long press '
+        // action are labeled.
         await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
         // Checks whether semantic nodes meet the minimum text contrast levels.
         // The recommended text contrast is 3:1 for larger text
