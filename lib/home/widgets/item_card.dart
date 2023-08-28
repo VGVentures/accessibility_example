@@ -22,8 +22,9 @@ class ItemCard extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(8),
       child: MergeSemantics(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             Semantics(
               sortKey: const OrdinalSortKey(2),
