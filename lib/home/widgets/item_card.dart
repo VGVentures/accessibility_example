@@ -12,41 +12,38 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      liveRegion: true,
-      child: Card(
-        clipBehavior: Clip.hardEdge,
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        margin: const EdgeInsets.all(8),
-        child: MergeSemantics(
-          child: ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              IndexedSemantics(
-                index: 0,
-                child: ItemCardImage(
-                  image: dog.image,
-                  label: dog.imageLabel,
-                ),
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      margin: const EdgeInsets.all(8),
+      child: MergeSemantics(
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            IndexedSemantics(
+              index: 0,
+              child: ItemCardImage(
+                image: dog.image,
+                label: dog.imageLabel,
               ),
-              const SizedBox(height: 8),
-              IndexedSemantics(
-                index: 1,
-                child: ItemCardTitle(title: dog.title),
-              ),
-              const SizedBox(height: 16),
-              IndexedSemantics(
-                index: 2,
-                child: ItemCardDescription(description: dog.description),
-              ),
-              const SizedBox(height: 16),
-              IndexedSemantics(index: 3, child: ItemFavoriteButton(dog: dog)),
-            ],
-          ),
+            ),
+            const SizedBox(height: 8),
+            IndexedSemantics(
+              index: 1,
+              child: ItemCardTitle(title: dog.title),
+            ),
+            const SizedBox(height: 16),
+            IndexedSemantics(
+              index: 2,
+              child: ItemCardDescription(description: dog.description),
+            ),
+            const SizedBox(height: 16),
+            IndexedSemantics(index: 3, child: ItemFavoriteButton(dog: dog)),
+          ],
         ),
       ),
     );
