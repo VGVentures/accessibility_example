@@ -25,16 +25,21 @@ class ItemCard extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            ItemCardImage(
-              image: dog.image,
-              label: dog.imageLabel,
+            IndexedSemantics(
+              index: 0,
+              child: ItemCardImage(
+                image: dog.image,
+                label: dog.imageLabel,
+              ),
             ),
-            const ExcludeSemantics(child: SizedBox(height: 8)),
-            ItemCardTitle(title: dog.title),
-            const ExcludeSemantics(child: SizedBox(height: 16)),
-            ItemCardDescription(description: dog.description),
-            const ExcludeSemantics(child: SizedBox(height: 16)),
-            ItemFavoriteButton(dog: dog),
+            SizedBox(height: 8),
+            IndexedSemantics(index: 1, child: ItemCardTitle(title: dog.title)),
+            SizedBox(height: 16),
+            IndexedSemantics(
+                index: 2,
+                child: ItemCardDescription(description: dog.description)),
+            SizedBox(height: 16),
+            IndexedSemantics(index: 3, child: ItemFavoriteButton(dog: dog)),
           ],
         ),
       ),
