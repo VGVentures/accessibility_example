@@ -26,6 +26,7 @@ class ItemFavoriteButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Semantics(
+        liveRegion: true,
         key: Key('item_favorite_button_${dog.title}'),
         button: true,
         label: label,
