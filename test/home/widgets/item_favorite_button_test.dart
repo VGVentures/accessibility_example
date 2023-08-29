@@ -83,6 +83,7 @@ void main() {
           isSelected: true,
           hasTapAction: true,
           isButton: true,
+          isLiveRegion: true,
           onTapHint: 'Remove ${dog.title} from favorites',
         ),
       );
@@ -104,6 +105,7 @@ void main() {
         matchesSemantics(
           hasTapAction: true,
           isButton: true,
+          isLiveRegion: true,
           onTapHint: 'Add ${dog.title} to favorites',
         ),
       );

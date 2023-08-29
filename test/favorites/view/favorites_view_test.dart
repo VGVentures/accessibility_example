@@ -107,7 +107,11 @@ void main() {
           tester.getSemantics(item),
           matchesSemantics(
             hasTapAction: true,
-            isLiveRegion: true,
+            isButton: true,
+            isEnabled: true,
+            isFocusable: true,
+            hasEnabledState: true,
+            isImage: true,
             onTapHint: 'Remove ${dog.title} from favorites',
           ),
         );

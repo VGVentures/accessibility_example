@@ -30,24 +30,39 @@ class FavoritesDogs extends StatelessWidget {
       itemBuilder: (context, index) {
         final dog = favoriteDogs[index];
         return Semantics(
-          key: Key('favoriteDog_${dog.title}'),
           liveRegion: true,
-          onTap: () => context.read<HomeBloc>().add(
-                UpdateFavoriteRequested(dog: dog),
-              ),
           onTapHint: 'Remove ${dog.title} from favorites',
-          child: MergeSemantics(
-            child: ListTile(
-              leading: ItemCardImage(image: dog.image, label: dog.imageLabel),
-              title: Text(dog.title),
-              subtitle: Text(dog.description),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () => context.read<HomeBloc>().add(
-                      UpdateFavoriteRequested(dog: dog),
+          child: Column(
+            children: [
+              MergeSemantics(
+                child: ListTile(
+                  leading:
+                      ItemCardImage(image: dog.image, label: dog.imageLabel),
+                  title: Text(dog.title),
+                  subtitle: Text(dog.description),
+                  trailing: Semantics(
+                    key: Key('favoriteDog_${dog.title}'),
+                    button: true,
+                    label: 'Remove button',
+                    onTap: () => context.read<HomeBloc>().add(
+                          UpdateFavoriteRequested(dog: dog),
+                        ),
+                    onTapHint: 'Remove ${dog.title} from favorites',
+                    enabled: true,
+                    focusable: true,
+                    image: true,
+                    textDirection: TextDirection.ltr,
+                    child: IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () => context.read<HomeBloc>().add(
+                            UpdateFavoriteRequested(dog: dog),
+                          ),
                     ),
+                  ),
+                ),
               ),
-            ),
+              const ExcludeSemantics(child: Divider()),
+            ],
           ),
         );
       },
