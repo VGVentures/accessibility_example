@@ -21,28 +21,19 @@ class ItemCard extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       child: MergeSemantics(
         child: ListView(
-          shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           children: [
-            IndexedSemantics(
-              index: 0,
-              child: ItemCardImage(
-                image: dog.image,
-                label: dog.imageLabel,
-              ),
+            ItemCardImage(
+              image: dog.image,
+              label: dog.imageLabel,
             ),
             const SizedBox(height: 8),
-            IndexedSemantics(
-              index: 1,
-              child: ItemCardTitle(title: dog.title),
-            ),
+            ItemCardTitle(title: dog.title),
             const SizedBox(height: 16),
-            IndexedSemantics(
-              index: 2,
-              child: ItemCardDescription(description: dog.description),
-            ),
+            ItemCardDescription(description: dog.description),
             const SizedBox(height: 16),
-            IndexedSemantics(index: 3, child: ItemFavoriteButton(dog: dog)),
+            ItemFavoriteButton(dog: dog),
           ],
         ),
       ),

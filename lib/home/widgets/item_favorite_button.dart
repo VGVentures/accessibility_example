@@ -40,6 +40,7 @@ class ItemFavoriteButton extends StatelessWidget {
             isFavorite ? Icons.favorite : Icons.favorite_border,
             semanticLabel: iconLabel,
           ),
+          tooltip: 'Favorite button',
           onPressed: () => context.read<HomeBloc>().add(
                 UpdateFavoriteRequested(dog: dog),
               ),

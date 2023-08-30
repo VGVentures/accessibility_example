@@ -79,7 +79,6 @@ class NoFavoritesView extends StatelessWidget {
     return Center(
       child: MergeSemantics(
         child: Semantics(
-          liveRegion: true,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

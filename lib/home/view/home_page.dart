@@ -87,8 +87,11 @@ class DogsList extends StatelessWidget {
           horizontal: 8,
           vertical: 16,
         ),
-        child: ItemCard(
-          dog: dogs[index],
+        child: IndexedSemantics(
+          index: index,
+          child: ItemCard(
+            dog: dogs[index],
+          ),
         ),
       ),
     );
