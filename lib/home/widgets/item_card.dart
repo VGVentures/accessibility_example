@@ -21,6 +21,7 @@ class ItemCard extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       child: MergeSemantics(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             IndexedSemantics(
