@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:very_good_accessibility/app/app.dart';
 import 'package:very_good_accessibility/home/home.dart';
 
 class FavoritesView extends StatelessWidget {
@@ -25,49 +26,45 @@ class FavoritesDogs extends StatelessWidget {
         context.select((HomeBloc bloc) => bloc.state.favoriteDogs);
 
     return ListView.builder(
-      shrinkWrap: true,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       itemBuilder: (context, index) {
         final dog = favoriteDogs[index];
-        return Semantics(
-          liveRegion: true,
-          onTapHint: 'Remove ${dog.title} from favorites',
-          child: Column(
-            children: [
-              MergeSemantics(
-                child: ListTile(
-                  leading:
-                      ItemCardImage(image: dog.image, label: dog.imageLabel),
-                  title: Text(dog.title),
-                  subtitle: Text(dog.description),
-                  trailing: Semantics(
-                    key: Key('favoriteDog_${dog.title}'),
-                    button: true,
-                    label: 'Remove button',
-                    onTap: () => context.read<HomeBloc>().add(
-                          UpdateFavoriteRequested(dog: dog),
-                        ),
-                    onTapHint: 'Remove ${dog.title} from favorites',
-                    enabled: true,
-                    focusable: true,
-                    image: true,
-                    textDirection: TextDirection.ltr,
-                    child: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () => context.read<HomeBloc>().add(
-                            UpdateFavoriteRequested(dog: dog),
-                          ),
-                    ),
+        return Column(
+          children: [
+            MergeSemantics(
+              child: ListTile(
+                leading: ItemCardImage(image: dog.image, label: dog.imageLabel),
+                title: Text(dog.title),
+                subtitle: Text(dog.description),
+                trailing: Semantics(
+                  key: Key('favoriteDog_${dog.title}'),
+                  button: true,
+                  label: 'Remove button',
+                  onTap: () => _updateFavorites(context, dog),
+                  onTapHint: 'Remove ${dog.title} from favorites',
+                  enabled: true,
+                  focusable: true,
+                  image: true,
+                  textDirection: TextDirection.ltr,
+                  child: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => _updateFavorites(context, dog),
                   ),
                 ),
               ),
-              const ExcludeSemantics(child: Divider()),
-            ],
-          ),
+            ),
+            const ExcludeSemantics(child: Divider()),
+          ],
         );
       },
       itemCount: favoriteDogs.length,
     );
+  }
+
+  void _updateFavorites(BuildContext context, Dog dog) {
+    context.read<HomeBloc>().add(
+          UpdateFavoriteRequested(dog: dog),
+        );
   }
 }
 
