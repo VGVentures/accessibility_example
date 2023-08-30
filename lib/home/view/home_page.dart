@@ -79,7 +79,6 @@ class DogsList extends StatelessWidget {
     final dogs = context.select((HomeBloc bloc) => bloc.state.dogs);
 
     return ListView.builder(
-      shrinkWrap: true,
       padding: const EdgeInsets.all(16),
       itemCount: dogs.length,
       itemBuilder: (context, index) => Padding(

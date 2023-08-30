@@ -31,20 +31,22 @@ class ItemFavoriteButton extends StatelessWidget {
         button: true,
         label: label,
         selected: isFavorite,
-        onTap: () => context.read<HomeBloc>().add(
-              UpdateFavoriteRequested(dog: dog),
-            ),
+        onTap: () => _updateFavorites(context),
         onTapHint: onTapHint,
         child: IconButton(
           icon: Icon(
             isFavorite ? Icons.favorite : Icons.favorite_border,
             semanticLabel: iconLabel,
           ),
-          onPressed: () => context.read<HomeBloc>().add(
-                UpdateFavoriteRequested(dog: dog),
-              ),
+          onPressed: () => _updateFavorites(context),
         ),
       ),
     );
+  }
+
+  void _updateFavorites(BuildContext context) {
+    context.read<HomeBloc>().add(
+          UpdateFavoriteRequested(dog: dog),
+        );
   }
 }
