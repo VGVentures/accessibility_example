@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -50,7 +51,7 @@ void main() {
         ItemFavoriteButton(dog: dog),
         homeBloc: homeBloc,
       );
-      final item = find.byKey(Key('item_favorite_button_${dog.title}'));
+      final item = find.byType(IconButton).first;
       await tester.tap(item);
       await tester.pumpAndSettle();
       verify(() => homeBloc.add(UpdateFavoriteRequested(dog: dog))).called(1);
@@ -75,15 +76,21 @@ void main() {
         ItemFavoriteButton(dog: dog),
         homeBloc: homeBloc,
       );
-      final item = find.byKey(Key('item_favorite_button_${dog.title}'));
+
+      final item = find
+          .ancestor(
+            of: find.byType(IconButton).first,
+            matching: find.byType(Semantics),
+          )
+          .first;
 
       expect(
         tester.getSemantics(item),
         matchesSemantics(
           isSelected: true,
           hasTapAction: true,
-          isButton: true,
           isLiveRegion: true,
+          isButton: true,
           onTapHint: 'Remove ${dog.title} from favorites',
         ),
       );
@@ -98,7 +105,13 @@ void main() {
         ItemFavoriteButton(dog: dog),
         homeBloc: homeBloc,
       );
-      final item = find.byKey(Key('item_favorite_button_${dog.title}'));
+
+      final item = find
+          .ancestor(
+            of: find.byType(IconButton).first,
+            matching: find.byType(Semantics),
+          )
+          .first;
 
       expect(
         tester.getSemantics(item),
@@ -120,7 +133,14 @@ void main() {
         ItemFavoriteButton(dog: dog),
         homeBloc: homeBloc,
       );
-      final item = find.byKey(Key('item_favorite_button_${dog.title}'));
+
+      final item = find
+          .ancestor(
+            of: find.byType(IconButton).first,
+            matching: find.byType(Semantics),
+          )
+          .first;
+
       final semantics = tester.getSemantics(item);
 
       tester.binding.pipelineOwner.semanticsOwner!.performAction(

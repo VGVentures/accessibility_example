@@ -37,7 +37,6 @@ class FavoritesDogs extends StatelessWidget {
                 title: Text(dog.title),
                 subtitle: Text(dog.description),
                 trailing: Semantics(
-                  key: Key('favoriteDog_${dog.title}'),
                   button: true,
                   label: 'Remove button',
                   onTap: () => _updateFavorites(context, dog),

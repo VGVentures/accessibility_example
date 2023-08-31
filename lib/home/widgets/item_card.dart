@@ -24,25 +24,36 @@ class ItemCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            IndexedSemantics(
-              index: 0,
-              child: ItemCardImage(
-                image: dog.image,
-                label: dog.imageLabel,
+            Flexible(
+              child: IndexedSemantics(
+                index: 0,
+                child: ItemCardImage(
+                  image: dog.image,
+                  label: dog.imageLabel,
+                ),
               ),
             ),
             const SizedBox(height: 8),
-            IndexedSemantics(
-              index: 1,
-              child: ItemCardTitle(title: dog.title),
+            Flexible(
+              child: IndexedSemantics(
+                index: 1,
+                child: ItemCardTitle(title: dog.title),
+              ),
             ),
             const SizedBox(height: 16),
-            IndexedSemantics(
-              index: 2,
-              child: ItemCardDescription(description: dog.description),
+            Flexible(
+              child: IndexedSemantics(
+                index: 2,
+                child: ItemCardDescription(description: dog.description),
+              ),
             ),
             const SizedBox(height: 16),
-            IndexedSemantics(index: 3, child: ItemFavoriteButton(dog: dog)),
+            Flexible(
+              child: IndexedSemantics(
+                index: 3,
+                child: ItemFavoriteButton(dog: dog),
+              ),
+            ),
           ],
         ),
       ),

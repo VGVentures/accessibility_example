@@ -101,7 +101,7 @@ void main() {
           FavoritesView(),
           homeBloc: homeBloc,
         );
-        final item = find.byKey(Key('favoriteDog_${dog.title}'));
+        final item = find.byType(ListTile).first;
 
         expect(
           tester.getSemantics(item),
@@ -128,7 +128,7 @@ void main() {
           FavoritesView(),
           homeBloc: homeBloc,
         );
-        final item = find.byKey(Key('favoriteDog_${dog.title}'));
+        final item = find.byType(ListTile).first;
         final semantics = tester.getSemantics(item);
 
         tester.binding.pipelineOwner.semanticsOwner!.performAction(
