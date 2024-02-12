@@ -33,21 +33,21 @@ class ItemCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const ExcludeSemantics(child: SizedBox(height: 8)),
             Flexible(
               child: IndexedSemantics(
                 index: 1,
                 child: ItemCardTitle(title: dog.title),
               ),
             ),
-            const SizedBox(height: 16),
+            const ExcludeSemantics(child: SizedBox(height: 16)),
             Flexible(
               child: IndexedSemantics(
                 index: 2,
                 child: ItemCardDescription(description: dog.description),
               ),
             ),
-            const SizedBox(height: 16),
+            const ExcludeSemantics(child: SizedBox(height: 16)),
             Flexible(
               child: IndexedSemantics(
                 index: 3,

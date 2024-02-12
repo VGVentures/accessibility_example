@@ -1,3 +1,4 @@
+export 'app_icon.dart';
 export 'item_card.dart';
 export 'item_card_description.dart';
 export 'item_card_image.dart';

@@ -25,6 +25,10 @@ class FavoritesDogs extends StatelessWidget {
     final favoriteDogs =
         context.select((HomeBloc bloc) => bloc.state.favoriteDogs);
 
+    final textStyle = Theme.of(context).textTheme;
+    final subtitleSytle = textStyle.bodySmall;
+    final fontSize = subtitleSytle?.fontSize;
+
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       itemBuilder: (context, index) {
@@ -33,12 +37,13 @@ class FavoritesDogs extends StatelessWidget {
           children: [
             MergeSemantics(
               child: ListTile(
+                isThreeLine: true,
                 leading: ItemCardImage(image: dog.image, label: dog.imageLabel),
                 title: Text(dog.title),
                 subtitle: Text(dog.description),
                 trailing: Semantics(
                   button: true,
-                  label: 'Remove button',
+                  label: 'Button to remove ${dog.title} from favorites page',
                   onTap: () => _updateFavorites(context, dog),
                   onTapHint: 'Remove ${dog.title} from favorites',
                   enabled: true,
@@ -46,13 +51,16 @@ class FavoritesDogs extends StatelessWidget {
                   image: true,
                   textDirection: TextDirection.ltr,
                   child: IconButton(
-                    icon: const Icon(Icons.delete),
+                    icon: AppIcon(
+                      icon: Icons.delete,
+                      fontSize: fontSize!,
+                      label: 'Delete icon',
+                    ),
                     onPressed: () => _updateFavorites(context, dog),
                   ),
                 ),
               ),
             ),
-            const ExcludeSemantics(child: Divider()),
           ],
         );
       },

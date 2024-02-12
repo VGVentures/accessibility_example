@@ -10,13 +10,14 @@ class ItemCardDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Text(
         description,
+        style: theme.textTheme.bodyMedium,
         semanticsLabel: description,
-        textScaleFactor: textScaleFactor * 1,
       ),
     );
   }
