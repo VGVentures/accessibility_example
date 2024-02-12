@@ -20,8 +20,10 @@ class ItemFavoriteButton extends StatelessWidget {
         ? 'Remove ${dog.title} from favorites'
         : 'Add ${dog.title} to favorites';
 
-    final label = isFavorite ? 'Remove button' : 'Add button';
-    const iconLabel = 'Heart button icon';
+    final label = isFavorite
+        ? 'Button to remove ${dog.title} from favorites'
+        : 'Button to add ${dog.title} to favorites';
+    const iconLabel = 'Heart icon';
 
     return Align(
       alignment: Alignment.centerRight,
@@ -33,9 +35,10 @@ class ItemFavoriteButton extends StatelessWidget {
         onTap: () => _updateFavorites(context),
         onTapHint: onTapHint,
         child: IconButton(
-          icon: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border,
-            semanticLabel: iconLabel,
+          icon: AppIcon(
+            icon: isFavorite ? Icons.favorite : Icons.favorite_border,
+            fontSize: 14,
+            label: iconLabel,
           ),
           onPressed: () => _updateFavorites(context),
         ),

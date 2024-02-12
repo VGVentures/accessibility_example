@@ -31,9 +31,11 @@ void main() {
         final bottomNavWidget = tester.widget<BottomNavigationBar>(
           find.byType(BottomNavigationBar),
         );
+
         expect(bottomNavWidget.currentIndex, 0);
         expect(find.byType(HomeView), findsOneWidget);
         expect(find.byType(FavoritesPage), findsNothing);
+        expect(find.byIcon(Icons.home), findsOne);
       });
 
       testWidgets('renders FavoritesPage', (tester) async {

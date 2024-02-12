@@ -10,6 +10,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    // By default, the font size for BottomNavigationBar labels is 14.0.
+    const bottomNavFontSize = 14.0;
+
     final selectedIndex =
         context.select((HomeBloc bloc) => bloc.state.selectedIndex);
 
@@ -41,12 +45,20 @@ class HomePage extends StatelessWidget {
             currentIndex: selectedIndex,
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: AppIcon(
+                  icon: Icons.home,
+                  fontSize: bottomNavFontSize,
+                  label: 'Home tab icon',
+                ),
                 label: 'Home',
                 tooltip: 'Home page',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
+                icon: AppIcon(
+                  icon: Icons.favorite,
+                  fontSize: bottomNavFontSize,
+                  label: 'Favorites tab icon',
+                ),
                 label: 'Favorites',
                 tooltip: 'Favorites page',
               ),
