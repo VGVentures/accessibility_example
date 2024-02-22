@@ -11,6 +11,13 @@ This is an example of how to implement accessibility in a Flutter app.
 Check out our blog [here]()
 
 
+### TalkBack demo.
+
+
+https://github.com/VGVentures/accessibility_example/assets/13244085/0a7ed537-d09f-4e0d-8da3-256da51bc68f
+
+
+
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
